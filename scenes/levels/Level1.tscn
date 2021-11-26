@@ -1,0 +1,265 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://actors/entity/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/level1story/08.jpg" type="Texture" id=2]
+[ext_resource path="res://actors/ui/PointingHandIndicator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/Control.gd" type="Script" id=4]
+[ext_resource path="res://assets/scene/01.jpg" type="Texture" id=5]
+[ext_resource path="res://resources/arrow.png" type="Texture" id=6]
+[ext_resource path="res://actors/detectors/VisualStoryTrigger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/Level1.gd" type="Script" id=10]
+[ext_resource path="res://actors/ui/SlideshowHolder.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/ui/level1story/013.jpg" type="Texture" id=12]
+[ext_resource path="res://assets/ui/level1story/09.jpg" type="Texture" id=13]
+[ext_resource path="res://assets/ui/level1story/011.jpg" type="Texture" id=14]
+[ext_resource path="res://assets/ui/level1story/010.jpg" type="Texture" id=15]
+[ext_resource path="res://assets/ui/level1story/07.jpg" type="Texture" id=16]
+[ext_resource path="res://assets/ui/level1story/012.jpg" type="Texture" id=17]
+[ext_resource path="res://assets/ui/level1story/010_1.jpg" type="Texture" id=18]
+[ext_resource path="res://assets/scene/01_top.png" type="Texture" id=19]
+[ext_resource path="res://assets/ui/level1story/02.jpg" type="Texture" id=20]
+[ext_resource path="res://assets/ui/level1story/04.jpg" type="Texture" id=21]
+[ext_resource path="res://assets/ui/level1story/06.jpg" type="Texture" id=22]
+[ext_resource path="res://assets/ui/level1story/03.jpg" type="Texture" id=23]
+[ext_resource path="res://assets/ui/level1story/05.jpg" type="Texture" id=24]
+[ext_resource path="res://scenes/Loading.tscn" type="PackedScene" id=25]
+[ext_resource path="res://actors/ui/Menu.tscn" type="PackedScene" id=26]
+[ext_resource path="res://resources/styles/comici.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://assets/ui/arrow.png" type="Texture" id=28]
+[ext_resource path="res://scenes/levels/AnimationPlayer.gd" type="Script" id=29]
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 27 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment(){
+	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 60, 55 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 15.1402, 333.598 )
+
+[sub_resource type="Animation" id=6]
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("arrow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("arrow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512.586, 198.269 ), Vector2( 753.274, 198.269 ) ]
+}
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SlideshowHolder" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_left = 110.65
+margin_top = 24.0
+margin_right = 961.65
+margin_bottom = 571.0
+textures_arr = [ ExtResource( 16 ), ExtResource( 2 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 12 ) ]
+level_id = "Level1"
+is_last = true
+towards_level_id = "Level2"
+
+[node name="SlideshowHolder2" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_left = 110.65
+margin_top = 24.0
+margin_right = 961.65
+margin_bottom = 571.0
+textures_arr = [ ExtResource( 20 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 22 ) ]
+slide_id = 1
+level_id = "Level1"
+
+[node name="Loading" parent="CanvasLayer" instance=ExtResource( 25 )]
+visible = false
+margin_left = 257.0
+margin_top = 207.0
+margin_right = 850.0
+margin_bottom = 335.0
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource( 26 )]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
+margin_left = 175.794
+margin_top = 510.381
+margin_right = 647.794
+margin_bottom = 566.381
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+anchor_right = 1.0
+margin_left = 16.6677
+margin_top = 6.34961
+margin_right = -27.3323
+margin_bottom = 46.3496
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Mbambi went to go sit on her bed"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="CanvasLayer/Control" instance=ExtResource( 3 )]
+position = Vector2( 536.088, 312.542 )
+
+[node name="Label" parent="CanvasLayer/Control/Sprite" index="1"]
+margin_left = -274.56
+margin_top = 163.235
+margin_right = 277.44
+margin_bottom = 243.235
+text = "Use Arrow keys to move left or right.
+-Tap to continue-"
+
+[node name="Area1" type="Node2D" parent="."]
+position = Vector2( -719.835, 0 )
+
+[node name="Back" type="TextureRect" parent="Area1"]
+margin_left = 723.0
+margin_top = 4.17841
+margin_right = 1790.0
+margin_bottom = 594.178
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="Area1" instance=ExtResource( 1 )]
+position = Vector2( 969.832, 336.153 )
+
+[node name="Camera2D" parent="Area1/Player" index="2"]
+position = Vector2( -0.512939, -40.6013 )
+
+[node name="Back2" type="TextureRect" parent="Area1"]
+margin_left = 723.0
+margin_top = 4.17841
+margin_right = 1790.0
+margin_bottom = 594.178
+mouse_filter = 2
+texture = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisualStoryTrigger2" parent="Area1" instance=ExtResource( 9 )]
+position = Vector2( 1295.22, 281.276 )
+input_pickable = false
+
+[node name="VisualStoryTrigger3" parent="Area1" instance=ExtResource( 9 )]
+position = Vector2( 1514.69, 356.957 )
+input_pickable = false
+
+[node name="VisualStoryTrigger4" parent="Area1" instance=ExtResource( 9 )]
+position = Vector2( 1357.44, 354.434 )
+input_pickable = false
+slide_id = 1
+
+[node name="left" type="TouchScreenButton" parent="Area1"]
+position = Vector2( 872.835, 434 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 6 )
+shape = SubResource( 7 )
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="Area1"]
+position = Vector2( 1640.84, 436 )
+scale = Vector2( -1, 1 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 6 )
+shape = SubResource( 7 )
+action = "ui_right"
+
+[node name="TopLeft" type="Position2D" parent="."]
+position = Vector2( 142.428, 1.59661 )
+
+[node name="BottomRight" type="Position2D" parent="."]
+position = Vector2( 929.536, 593.767 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 139.693, 315.254 )
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 816.407, 315.254 )
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 5 )
+
+[node name="arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 753.274, 198.269 )
+rotation = 3.14159
+scale = Vector2( 0.575701, 0.575701 )
+texture = ExtResource( 28 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/indicator = SubResource( 6 )
+script = ExtResource( 29 )
+
+[connection signal="gui_input" from="CanvasLayer/Control" to="CanvasLayer/Control" method="_on_Control_gui_input"]
+
+[editable path="CanvasLayer/Control/Sprite"]
+[editable path="Area1/Player"]
